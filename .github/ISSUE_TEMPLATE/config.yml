@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussions Forum
+    url: https://github.com/marcelhaindl/bkp/discussions
+    about: Questions and configuration or deployment problems can also be discussed.

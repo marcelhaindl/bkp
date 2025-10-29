@@ -1,0 +1,3 @@
+# bkp
+
+bkp is a simple command-line interface (CLI) tool designed to help you easily backup your files and directories. With bkp, you can quickly create backups of important data, ensuring that your files are safe and secure. The tool is lightweight, easy to use, and supports various backup options to suit your needs. Whether you're looking to backup a single file or an entire directory, bkp provides a straightforward solution to keep your data protected.
