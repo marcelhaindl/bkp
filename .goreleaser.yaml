@@ -17,9 +17,9 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X github.com/marcelhaindl/bkp/cmd/version.Version={{.Version}}
-      - -X github.com/marcelhaindl/bkp/cmd/version.Commit={{.Commit}}
-      - -X github.com/marcelhaindl/bkp/cmd/version.BuildDate={{.Date}}
+      - -X github.com/marcelhaindl/bkp/internal/cli/version.Version={{ .Version }}
+      - -X github.com/marcelhaindl/bkp/internal/cli/version.Commit={{ .Commit }}
+      - -X github.com/marcelhaindl/bkp/internal/cli/version.BuildDate={{ .Date }}
 
 release:
   prerelease: auto
