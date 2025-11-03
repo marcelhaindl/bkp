@@ -57,7 +57,7 @@ including the version number, commit hash, and build date.`,
 // Output format:
 //
 //	bkp version <Version> (commit <Commit>, built <BuildDate>)
-func runE(cmd *cobra.Command, args []string) error {
+func runE(cmd *cobra.Command, _ []string) error {
 	_, err := fmt.Fprintf(cmd.OutOrStdout(), "bkp version %s (commit %s, built %s)\n", Version, Commit, BuildDate)
 	return err
 }

@@ -17,6 +17,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"io/fs"
@@ -120,7 +121,7 @@ func backupDirectory(src, dst string) error {
 		targetPath := filepath.Join(dst, relPath)
 
 		if dir.IsDir() {
-			return os.MkdirAll(targetPath, 0755)
+			return os.MkdirAll(targetPath, fs.ModePerm)
 		}
 
 		return backupFile(path, targetPath)
@@ -150,7 +151,7 @@ func backupFile(src, dst string) error {
 		return fmt.Errorf("failed to access destination: %w", err)
 	}
 
-	if err := os.MkdirAll(filepath.Dir(dst), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(dst), fs.ModePerm); err != nil {
 		return fmt.Errorf("failed to create destination directories: %w", err)
 	}
 
@@ -200,7 +201,7 @@ func ensureDstOutsideSrc(src, dst string) error {
 	}
 
 	if rel == "." || !strings.HasPrefix(rel, "..") {
-		return fmt.Errorf("destination cannot be inside source directory")
+		return errors.New("destination cannot be inside source directory")
 	}
 
 	return nil
