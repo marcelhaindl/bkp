@@ -121,7 +121,7 @@ func backupDirectory(src, dst string) error {
 		targetPath := filepath.Join(dst, relPath)
 
 		if dir.IsDir() {
-			return os.MkdirAll(targetPath, fs.ModePerm)
+			return os.MkdirAll(targetPath, 0o755)
 		}
 
 		return backupFile(path, targetPath)
@@ -140,10 +140,6 @@ func backupDirectory(src, dst string) error {
 // Returns:
 //   - error: any error encountered while reading or writing files
 func backupFile(src, dst string) error {
-	if err := ensureDstOutsideSrc(src, dst); err != nil {
-		return err
-	}
-
 	dstInfo, err := os.Stat(dst)
 	if err == nil && dstInfo.IsDir() {
 		dst = filepath.Join(dst, filepath.Base(src))
@@ -151,7 +147,7 @@ func backupFile(src, dst string) error {
 		return fmt.Errorf("failed to access destination: %w", err)
 	}
 
-	if err := os.MkdirAll(filepath.Dir(dst), fs.ModePerm); err != nil {
+	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
 		return fmt.Errorf("failed to create destination directories: %w", err)
 	}
 
